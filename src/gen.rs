@@ -725,8 +725,8 @@ fn cenum_to_rs(ctx: &mut GenCtx, name: String, kind: IKind, enum_items: &[EnumIt
 
         found_values.insert(item.val, name);
 
-        let sign = ast::UnsuffixedIntLit(if item.val < 0 { ast::Minus } else { ast::Plus });
-        let value = ctx.ext_cx.expr_lit(ctx.span, ast::LitInt(item.val.abs() as u64, sign));
+        let sign = ast::UnsuffixedIntLit(ast::Plus);
+        let value = ctx.ext_cx.expr_lit(ctx.span, ast::LitInt(item.val as u64, sign));
 
         variants.push(P(respan(ctx.span, ast::Variant_ {
             name: name,
